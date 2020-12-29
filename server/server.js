@@ -1,6 +1,6 @@
 import app from './app.js';
-const port = 7000
+import config from './config/index.js'
 
+const {PORT} = config
 
-
-app.listen(port, ()=> console.log('hello blog'))
+app.listen(PORT, ()=> console.log(`Server Started on Port ${PORT}`))

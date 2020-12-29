@@ -48,14 +48,10 @@ router.post('/', (req, res) =>{
                 if(err)throw err;
                 newUser.password = hash;
                 newUser.save().then(user =>{
-                    jwt.sign(
-                        {id:user.id},
-                        JWT_SECRET,
-                        {expiresIn:3600},
+                    jwt.sign( {id:user.id}, JWT_SECRET, {expiresIn:3600},
                         (err, token)=>{
                             if(err) throw err;
-                            res.json({
-                                token,
+                            res.json({token,
                                 user:{
                                     id:user.id,
                                     name:user.name,
