@@ -35,7 +35,7 @@ mongoose.connect(MONGO_URI, {
 app.get('/');
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes); 
 
 export default app;
 //module화

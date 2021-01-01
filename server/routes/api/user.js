@@ -8,9 +8,9 @@ import config from '../../config/index.js';
 const {JWT_SECRET} = config;
 const router = express.Router()
 
-//router GET api/User
+//router GET api/user
 //@desc get all user
-//@access publick
+//@access public
 
 router.get('/', async(req, res) =>{
     try{
@@ -23,12 +23,12 @@ router.get('/', async(req, res) =>{
     }
 })
 
-//router POST api/User
+//router POST api/user
 //@desc register user
 //@access public
 
 router.post('/', (req, res) =>{
-    console.log(req);
+    //console.log(req);
     const {name, email, password} = req.body
     //Simple validation
     if(!name ||!email || !password){
@@ -47,6 +47,7 @@ router.post('/', (req, res) =>{
             bcrypt.hash(newUser.password, salt, (err, hash)=>{
                 if(err)throw err;
                 newUser.password = hash;
+                
                 newUser.save().then(user =>{
                     jwt.sign( {id:user.id}, JWT_SECRET, {expiresIn:3600},
                         (err, token)=>{
